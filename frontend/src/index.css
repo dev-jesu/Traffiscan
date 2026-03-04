@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans text-gray-800 antialiased;
+  }
+}
+
+@layer components {
+  .feature-card {
+    @apply bg-card bg-opacity-90 backdrop-blur-sm p-6 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1.5;
+  }
+
+  .nav-link {
+    @apply text-white hover:text-accent-yellow transition-colors;
+  }
+
+  .mountain-background {
+    @apply bg-navy-900 bg-mountains bg-cover bg-center bg-blend-soft-light;
+  }
+}
+
+
