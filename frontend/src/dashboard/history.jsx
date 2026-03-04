@@ -13,7 +13,7 @@ const Videos = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch('http://localhost:5000/api/videos')
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/videos`)
       .then((res) => res.json())
       .then((data) => {
         setVideos(data);
@@ -63,7 +63,7 @@ const Videos = () => {
   };
 
   const fetchRelatedPhotos = (videoName) => {
-    fetch(`http://localhost:5000/api/photos?videoName=${videoName}`)
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/photos?videoName=${videoName}`)
       .then((res) => res.json())
       .then((data) => {
         if (data && Array.isArray(data)) {
@@ -185,21 +185,19 @@ const Videos = () => {
                   <nav className="flex">
                     <button
                       onClick={() => setActiveTab('video')}
-                      className={`px-6 py-4 text-center border-b-2 font-medium text-sm ${
-                        activeTab === 'video'
+                      className={`px-6 py-4 text-center border-b-2 font-medium text-sm ${activeTab === 'video'
                           ? 'border-blue-500 text-blue-600'
                           : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                      }`}
+                        }`}
                     >
                       Video Details
                     </button>
                     <button
                       onClick={() => setActiveTab('evidence')}
-                      className={`px-6 py-4 text-center border-b-2 font-medium text-sm ${
-                        activeTab === 'evidence'
+                      className={`px-6 py-4 text-center border-b-2 font-medium text-sm ${activeTab === 'evidence'
                           ? 'border-blue-500 text-blue-600'
                           : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                      }`}
+                        }`}
                     >
                       Related Evidence ({relatedPhotos.length})
                     </button>

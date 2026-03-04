@@ -40,7 +40,7 @@ function Reports() {
   const fetchViolations = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('http://localhost:5000/api/violations/all');
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/violations/all`);
       setViolations(res.data);
     } catch (error) {
       console.error('Error fetching violations:', error);
@@ -284,7 +284,7 @@ function Reports() {
                             },
                             tooltip: {
                               callbacks: {
-                                label: function(context) {
+                                label: function (context) {
                                   const label = context.label || '';
                                   const value = context.raw || 0;
                                   const total = context.dataset.data.reduce((a, b) => a + b, 0);
