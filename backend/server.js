@@ -8,7 +8,8 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
+const baseUrl = process.env.BASE_URL || `http://localhost:${port}`;
 
 // Middleware
 app.use(cors());
@@ -164,7 +165,7 @@ app.get('/api/videos', (req, res) => {
 
     const videoUrls = videoFiles.map(file => ({
       name: file,
-      url: `http://localhost:${port}/output_videos/${file}`
+      url: `${baseUrl}/output_videos/${file}`
     }));
 
     res.json(videoUrls);
@@ -232,8 +233,8 @@ app.get('/api/photos/latest', async (req, res) => {
       {},
       { imageUrl: 1, violationType: 1, analyzedAt: 1, _id: 0 }
     )
-    .sort({ analyzedAt: -1 })
-    .limit(10);
+      .sort({ analyzedAt: -1 })
+      .limit(10);
 
     res.json(latestPhotos);
   } catch (error) {
@@ -262,5 +263,5 @@ app.get('/api/reports/all', async (req, res) => {
 
 // ✅ Start server
 app.listen(port, () => {
-  console.log(`🚀 Server running on http://localhost:${port}`);
+  console.log(`🚀 Server running on ${baseUrl}`);
 });
