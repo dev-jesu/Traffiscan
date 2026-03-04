@@ -13,7 +13,7 @@ const Videos = () => {
     const fetchVideos = async () => {
       try {
         setLoading(true);
-        const response = await fetch('http://localhost:5000/api/videos');
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/videos`);
         const data = await response.json();
         const latestVideos = data.slice(-3).reverse();
         setVideos(latestVideos);
@@ -88,11 +88,10 @@ const Videos = () => {
                           key={index}
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
-                          className={`cursor-pointer rounded-lg overflow-hidden border-2 ${
-                            selectedVideo?.name === video.name
+                          className={`cursor-pointer rounded-lg overflow-hidden border-2 ${selectedVideo?.name === video.name
                               ? 'border-blue-500 shadow-md'
                               : 'border-gray-200 hover:border-blue-300'
-                          } transition-all duration-200`}
+                            } transition-all duration-200`}
                           onClick={() => handleVideoClick(video)}
                         >
                           <div className="relative aspect-video">

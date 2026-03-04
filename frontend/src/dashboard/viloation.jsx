@@ -7,7 +7,7 @@ const ViolationPhotos = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/photos')
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/api/photos`)
       .then((res) => res.json())
       .then((data) => {
         setPhotos(data);
